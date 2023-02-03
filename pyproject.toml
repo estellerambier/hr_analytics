@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Rambier Estelle <38014937+estellerambier@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{include = "hr_analytics"}]
 
 [[tool.poetry.source]]
 name = "pypi-public"
