@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "hr-analytics-tool"
+version = "0.1.0"
+description = ""
+authors = ["Rambier Estelle <38014937+estellerambier@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "hr_analytics_tool"}]
+
+[[tool.poetry.source]]
+name = "pypi-public"
+url = "https://pypi.org/simple/"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^1.5.2"
+streamlit = "^1.16.0"
+openpyxl = "^3.1.0"
+ipykernel = "^6.21.1"
+plotly = "^5.13.0"
+nbformat = "^5.7.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
