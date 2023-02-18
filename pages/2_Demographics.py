@@ -65,8 +65,11 @@ if df is not None:
     df_iso = pd.read_csv("static/map_iso.txt", sep="\t")
     df_iso.columns = ["country", "2let", "3let"]
     df_country = mapping.merge(df_nationalities, on="Nationality", how="right").merge(
-        df_iso, on="country"
+        df_iso, on="country", how="left"
     )
+    df_country.loc[df_country.Nationality == "United States of America", "3let"] = "USA"
+    df_country.loc[df_country.Nationality == "Iranian", "3let"] = "IRN"
+    df_country.loc[df_country.Nationality == "Russian", "3let"] = "RUS"
     fig = px.choropleth(
         df_country,
         locations="3let",
