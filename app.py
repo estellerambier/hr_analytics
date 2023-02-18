@@ -11,12 +11,12 @@ st.set_page_config(
 
 if __name__ == "__main__":
 
-    #st.image("quotaclimat/utils/coverquotaclimat.png")
+    # st.image("quotaclimat/utils/coverquotaclimat.png")
 
     st.title("Data driven HR information")
     st.markdown(
         "Data tools will not replace HR, but HR who don't use data tools will be replaced by those who do."
     )
 
-    #st.header("Available")
-    #st.markdown("Feature request")
+    # st.header("Available")
+    # st.markdown("Feature request")

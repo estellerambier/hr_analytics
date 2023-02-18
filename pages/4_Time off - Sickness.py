@@ -2,9 +2,8 @@ import datetime
 from io import StringIO
 
 import pandas as pd
-import streamlit as st
-
 import plotly.express as px
+import streamlit as st
 
 st.write("### Exploring the leaves")
 
@@ -40,29 +39,39 @@ df = load_data(uploaded_files)
 
 
 if df is not None:
-    df['Total hours leave'] = df['Sick days'] 
+    df["Total hours leave"] = df["Sick days"]
     start_date = datetime.datetime(2022, 1, 1)
-    df['nb_days_ooo'] = df['Total hours leave'] /8
-    df['nb_days_total'] = (datetime.datetime.today() - pd.to_datetime(df['Hire date'])).dt.days
-    df['percentage_of_ooo_days'] = (df['nb_days_ooo'] / df['nb_days_total']) * 100
+    df["nb_days_ooo"] = df["Total hours leave"] / 8
+    df["nb_days_total"] = (
+        datetime.datetime.today() - pd.to_datetime(df["Hire date"])
+    ).dt.days
+    df["percentage_of_ooo_days"] = (df["nb_days_ooo"] / df["nb_days_total"]) * 100
 
-    df_per_departement = df.groupby('Departement').mean().reset_index()
-    df_per_level = df.groupby('Level').mean().reset_index()
-    fig = px.bar(df_per_departement, x='Departement', y='percentage_of_sick_days')
-    fig.update_layout(title='Average percentage of sick days per Departement')
+    df_per_departement = df.groupby("Departement").mean().reset_index()
+    df_per_level = df.groupby("Level").mean().reset_index()
+    fig = px.bar(df_per_departement, x="Departement", y="percentage_of_sick_days")
+    fig.update_layout(title="Average percentage of sick days per Departement")
     st.plotly_chart(fig, use_container_width=True)
 
-    fig = px.bar(df_per_level, x='Level', y='percentage_of_sick_days')
-    fig.update_layout(title='Average percentage of sick days per Level')
+    fig = px.bar(df_per_level, x="Level", y="percentage_of_sick_days")
+    fig.update_layout(title="Average percentage of sick days per Level")
     st.plotly_chart(fig, use_container_width=True)
 
-    fig = px.bar(df.sort_values('percentage_of_sick_days', ascending=False).head(10), x='First Name', y='percentage_of_sick_days')
-    fig.update_layout(title='Most sick days ranking')
+    fig = px.bar(
+        df.sort_values("percentage_of_sick_days", ascending=False).head(10),
+        x="First Name",
+        y="percentage_of_sick_days",
+    )
+    fig.update_layout(title="Most sick days ranking")
 
     st.plotly_chart(fig, use_container_width=True)
 
-    fig = px.bar(df.sort_values('percentage_of_sick_days').head(10), x='First Name', y='percentage_of_sick_days')
-    fig.update_layout(title='Least sick days ranking')
+    fig = px.bar(
+        df.sort_values("percentage_of_sick_days").head(10),
+        x="First Name",
+        y="percentage_of_sick_days",
+    )
+    fig.update_layout(title="Least sick days ranking")
 
     st.plotly_chart(fig, use_container_width=True)
 
